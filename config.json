@@ -1,0 +1,10 @@
+{
+    "port":3000,
+    "index":"index.xjs",
+    "projects":[
+        {
+            "server":"127.0.0.1",
+            "path":"default"
+        }
+    ]
+}
