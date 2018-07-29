@@ -1,14 +1,26 @@
 const utils={};
 utils.log=console.log;
 
+let output;
+
 utils.send=function (rs){
     process.send({write:rs});
 };
-process.on('req',function (req) {
-    utils.req=req;
+utils.session= new Proxy({},{
+    set:function(target,key,value,receiver){
+        console.log(target,key,value,receiver);
+        process.send({
+            setSession:{
+                key:key,
+                value:value
+            }
+        });
+    }
 });
-process.on('res',function (res) {
-    utils.res=res;
+process.on('message',function (obj) {
+    if (obj.session!==undefined){
+        utils.session=obj.session;
+    }
 });
 
 module.exports= utils;

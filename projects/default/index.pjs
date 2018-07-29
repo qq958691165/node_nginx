@@ -1,3 +1,3 @@
 const u = require('./../../common/utils');
-
-u.send(u.req.toString());
+u.send("js");
+// u.res.send('asdfsdfa');
